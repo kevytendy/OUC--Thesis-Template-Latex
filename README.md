@@ -11,7 +11,7 @@ If you have questions, suggestions, or improvements for this OUC Thesis LaTeX te
 
 - **Author:** Kelvin Wachi  
 - **Email:** [Kevy_Tendy AT email.com](mailto:kelvinwachi01@@gmail.com)  
-- **GitHub:** [@TyroneZeka](https://github.com/kevytendy)  
+- **GitHub:** [@kevytendy](https://github.com/kevytendy)  
 - **LinkedIn:** [Kelvin Wachi](https://www.linkedin.com/in/kelvin-wachi/)  
 - **Issues & feedback:** Please open a [GitHub Issue](../../issues) in this repository.
 
@@ -161,7 +161,7 @@ latexmk -xelatex -pdf main.tex
 \major{计算机技术}
 \supervisor{师傅}
 \entitle{Diff-GAN: Privacy-Preserving Tabular Data Synthesis under GAN and Diffusion Modeling}
-\enauthor{Tailong}
+\enauthor{Kelvin}
 \enmajor{Computer Science}
 \ensupervisor{Prof. Yu Yanwei}
 \endate{May 1, 2026}
