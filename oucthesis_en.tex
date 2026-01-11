@@ -1,0 +1,206 @@
+% OUC Thesis Template — English User Guide
+% Copyright (C) 2025-\the\year by Tyrone Zeka
+% This document explains how to use the `oucthesis` class in English.
+% Compile with: xelatex oucthesis_en.tex (or `latexmk -xelatex oucthesis_en.tex`)
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  allcolors=blue,
+  pdftitle={OUC Thesis Template — English User Guide},
+  pdfauthor={Tyrone Zeka}
+}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,frame=single}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+\title{OUC Thesis Template\\English User Guide}
+\author{Tyrone Zeka\\}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+The \texttt{oucthesis} class is a \LaTeX{} template for undergraduate and graduate theses at Ocean University of China (OUC). It follows the university’s official requirements for thesis formatting. Source repository: \href{https://github.com/TyroneZeka/OUC--Thesis-Template-Latex}{GitHub}.
+
+\section{What’s in the repo}
+\begin{longtable}{@{}llp{0.52\textwidth}@{}}
+\toprule
+Category & File & Description\\
+\midrule
+Template & \texttt{oucthesis.dtx} & Documented source (developers only; generates the class and this manual).\\
+         & \texttt{oucthesis.cls} & Document class.\\
+         & \texttt{oucextra.sty}  & Extra macros used by the template.\\
+         & \texttt{oucauthoryear.bst} & Author–year bibliography style.\\
+         & \texttt{oucnumerical.bst}  & Numerical bibliography style.\\
+         & \texttt{figures/ouc\_*.pdf} & University name and emblem images.\\
+\addlinespace
+Generated & \texttt{oucthesis.pdf} & The Chinese manual (from the .dtx).\\
+\addlinespace
+Examples & \texttt{main.tex} & Example thesis main file.\\
+         & \texttt{chapters/*.tex} & Example chapters.\\
+         & \texttt{figures/} & Image folder.\\
+         & \texttt{bib/ouc.bib} & Example Bib\TeX{} database.\\
+\addlinespace
+Other & \texttt{README.md} & Basic notes.\\
+      & \texttt{Makefile} & Build recipes.\\
+\bottomrule
+\end{longtable}
+
+\section{Requirements}
+\begin{itemize}[leftmargin=1.5em]
+  \item TeX distribution: TeX Live/MacTeX/MiKTeX (2015 or newer).
+  \item Engines: XeLaTeX recommended (UTF-8 source and \texttt{xeCJK} for Chinese).
+  \item Packages used by the class include: \texttt{amssymb, caption, calc, ctex, etoolbox, fancyhdr, geometry, hyperref, natbib, pifont, titletoc, tikz, upgreek, xparse}.
+\end{itemize}
+
+\section{Build options}
+Use one of the following:
+\begin{description}[leftmargin=1.7em,labelsep=0.5em]
+  \item[GNU make] Build thesis: \lstinline|make|. Build Chinese manual: \lstinline|make doc|.
+  \item[latexmk] Build thesis: \lstinline|latexmk -xelatex main|. Build Chinese manual: \lstinline|latexmk -xelatex oucthesis.dtx|. Build this English guide: \lstinline|latexmk -xelatex oucthesis_en.tex|.
+  \item[Manual] Thesis: \lstinline|xelatex main| \textrightarrow{} \lstinline|bibtex main| (if using Bib\TeX) \textrightarrow{} \lstinline|xelatex main| \textrightarrow{} \lstinline|xelatex main|.
+\end{description}
+
+\section{Class options}
+Declare the class in your thesis main file, e.g.:
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\documentclass[doctor,english,pdf]{oucthesis}
+\end{lstlisting}
+Options:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Type & Option & Meaning\\
+\midrule
+Required & \texttt{bachelor} & Undergraduate thesis\\
+         & \texttt{master} & Master’s thesis\\
+         & \texttt{doctor} & Doctoral thesis\\
+\midrule
+Optional & \texttt{professional} & Professional degree\\
+         & \texttt{chinese} & Chinese (default)\\
+         & \texttt{english} & English\\
+         & \texttt{print} & Double-sided print mode (default)\\
+         & \texttt{pdf} & Single-sided; keep hyperlink colors\\
+         & \texttt{super} & Superscript numeric citations (default)\\
+         & \texttt{numbers} & Inline numeric citations\\
+         & \texttt{authoryear} & Author–year citations\\
+\bottomrule
+\end{tabular}
+\end{center}
+Other options (e.g. \lstinline|fontset=fandol|) are forwarded to \texttt{ctexbook}.
+
+\section{Fonts}
+\subsection*{Chinese}
+Chinese is supported via \texttt{xeCJK} (not the legacy CJK). Save your source as UTF-8 and compile with XeLaTeX. \texttt{ctex} auto-detects your OS and picks a default Chinese font set (Apple CJK on macOS; Zhongyi + Microsoft YaHei on Windows Vista+; Zhongyi on XP and earlier; Fandol otherwise). You may override with \lstinline|fontset=<name>|.
+
+\subsection*{Latin}
+The template uses Times New Roman (serif), Arial (sans), and Courier New (mono). Windows/macOS include them by default; for Linux, install or copy the fonts.
+
+\section{Thesis structure}
+\subsection*{Undergraduate}
+Cover (Chinese, English, originality and authorization) \textrightarrow{} front matter (Acknowledgements, TOC, Chinese abstract, English abstract) \textrightarrow{} main matter (Chapters, References) \textrightarrow{} Appendix.
+
+\subsection*{Graduate}
+Cover (Chinese, English, originality and authorization) \textrightarrow{} front matter (Chinese abstract, English abstract, TOC, lists of figures/tables/code, Notation) \textrightarrow{} main matter (Chapters, References) \textrightarrow{} Appendix \textrightarrow{} back matter (Acknowledgements, Publications).
+
+\paragraph{Note} The example \texttt{main.tex} follows the graduate order. \emph{Undergraduates should adjust the order manually.} If \texttt{print} (default) is used, an “Originality Statement” page is inserted after the cover. With \texttt{pdf}, no statement page is included.
+
+\section{Title page fields}
+Declare fields before \lstinline|\maketitle|. English fields use the \texttt{en} prefix.
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Chinese & English & Meaning\\
+\midrule
+\verb|\title| & \verb|\entitle| & Thesis title\\
+\verb|\author| & \verb|\enauthor| & Author name\\
+\verb|\major| & \verb|\enmajor| & Major/discipline\\
+\verb|\supervisor| & \verb|\ensupervisor| & Supervisor\\
+\verb|\cosupervisor| & \verb|\encosupervisor| & Co-supervisor\\
+\verb|\date| & \verb|\endate| & Completion date (defaults to today)\\
+\verb|\secrettext| & \verb|\ensecrettext| & Classification (default: not confidential)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Special environments}
+Available environments:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Environment & Purpose\\
+\midrule
+\verb|abstract| & Chinese abstract\\
+\verb|enabstract| & English abstract\\
+\verb|notation| & Symbols / Notation\\
+\verb|acknowledgements| & Acknowledgements\\
+\verb|publications| & Publications while enrolled\\
+\bottomrule
+\end{tabular}
+\end{center}
+Keywords are specified using \verb|\keywords| (Chinese) and \verb|\enkeywords| (English) within the respective abstract environments.
+
+\section{TOC and lists}
+\verb|\tableofcontents|, \verb|\listoffigures|, \verb|\listoftables|, and \verb|\listofalgorithms| produce the Table of Contents and the lists. Figures/tables must use \verb|\caption| inside floats to be numbered and listed. Use \verb|\caption*| for unnumbered captions not included in lists. Use \verb|\note{...}| to add a “Notes:” line inside figures/tables.
+
+\section{Math helpers}
+Upright symbols: \verb|\eu| for $\mathrm{e}$, \verb|\iu| for $\mathrm{i}$, \verb|\diff| for $\mathrm{d}$, and operators \verb|\argmax|, \verb|\argmin|. Theorem-like environments include: \emph{theorem, assertion, axiom, corollary, lemma, proposition, definition, example, remark, proof}. The \verb|proof| environment replaces the title and appends a QED symbol automatically. You can define new ones with \verb|\newtheorem| or customize styles with \verb|\newtheoremstyle| (\texttt{amsthm}).
+
+\section{References}
+Supported styles:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Bibliography list & Citation marker & Class option\\
+\midrule
+Numeric (sorted) & Superscript numbers & \texttt{super}\\
+Numeric (inline) & [1], [2], ... & \texttt{numbers}\\
+Author–year & (Author, Year) & \texttt{authoryear}\\
+\bottomrule
+\end{tabular}
+\end{center}
+For author–year, sort Chinese entries by pinyin or stroke order. Because Bib\TeX{} cannot infer pinyin from Chinese names, set the \texttt{key} field manually to the author’s pinyin, e.g. \verb|key = {ma3 ke4 si1 en1 ge2 si1}| for "Marx and Engels". In rare cases, set \verb|language| (english/chinese/japanese/russian), \verb|mark| (type), and \verb|medium| (carrier) explicitly.
+Wrap proper nouns that must stay capitalized in braces inside the \texttt{title} field, e.g. \verb|Lectures on {Riemann} surfaces|.
+
+\section{Quick start}
+A minimal skeleton:
+\begin{lstlisting}[language={[LaTeX]TeX}]
+\documentclass[master,english,authoryear]{oucthesis}
+\title{An Example Thesis}
+\author{Your Name}
+\major{Computer Science}
+\supervisor{Prof. Advisor}
+\date{2025-10-14}
+\begin{document}
+\maketitle
+\begin{abstract}
+This is the Chinese abstract if needed.
+\keywords{Thesis; Abstract; Keywords}
+\end{abstract}
+\begin{enabstract}
+This is the English abstract.
+\enkeywords{Thesis; Abstract; Keywords}
+\end{enabstract}
+\tableofcontents
+\chapter{Introduction}
+Your content.
+\bibliographystyle{oucauthoryear}
+\bibliography{bib/ouc}
+\end{document}
+\end{lstlisting}
+
+\section{Notes}
+\begin{itemize}[leftmargin=1.5em]
+  \item This English guide does not change the class behavior; it complements the original Chinese manual.
+  \item Use XeLaTeX and UTF-8 for any Chinese content.
+\end{itemize}
+
+\end{document}

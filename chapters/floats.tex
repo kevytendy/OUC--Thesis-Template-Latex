@@ -1,0 +1,112 @@
+\chapter{Floating Elements}
+
+\section{Three-Line Tables}
+
+The three-line table format is the recommended style in the *Writing Manual*,
+as shown in Table~\ref{tab:exampletable}.
+\begin{table}[htbp]
+  \centering
+  \caption{Caption of the table goes here}
+  \label{tab:exampletable}
+  \begin{tabular}{cl}
+    \toprule
+      Operating System & TeX Distribution \\
+    \midrule
+      All Platforms & TeX Live \\
+      macOS & MacTeX \\
+      Windows & MikTeX \\
+    \bottomrule
+  \end{tabular}
+  \note{This is a very long table note that demonstrates how lengthy footnotes
+  can be displayed properly within a table.}
+\end{table}
+
+
+
+\section{Long Tables}
+
+Tables that span more than one page should use the dedicated 
+\texttt{longtable} environment (see Table~\ref{tab:longtable}).
+\begin{longtable}{ccc}
+  % First page header
+  \caption[Demonstration of Long Table]{Demonstration of Long Table}
+  \label{tab:longtable}\\
+  \toprule[1.5pt]
+    Name  & Description & Remarks\\
+  \midrule[1pt]
+  \endfirsthead
+  % Continued page header
+  \caption[]{Demonstration of Long Table (continued)} \\
+  \toprule[1.5pt]
+    Name  & Description & Remarks \\
+  \midrule[1pt]
+  \endhead
+  % First page footer
+  \hline
+  \multicolumn{3}{r}{\small Continued on next page}
+  \endfoot
+  % Last page footer
+  \bottomrule[1.5pt]
+  \endlastfoot
+
+  AAAAAAAAAAAA & BBBBBBBBBBB & CCCCCCCCCCCCCC \\
+  AAAAAAAAAAAA & BBBBBBBBBBB & CCCCCCCCCCCCCC \\ 
+  AAAAAAAAAAAA & BBBBBBBBBBB & CCCCCCCCCCCCCC \\ 
+  (Repeated rows omitted for brevity)
+\end{longtable}
+
+
+
+\section{Figures}
+
+Some authors prefer to reference figures and tables by relative position 
+(e.g., “the figure below” or “the table above”) and insist that floats 
+be placed exactly where they are mentioned.  
+In fact, this is not recommended because it can easily create large areas 
+of blank space in the text.  
+In academic writing, the standard way is to refer to elements 
+by their numbers, such as “Figure~\ref{fig:logo}” and 
+“Table~\ref{tab:exampletable}”.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.3\textwidth]{ouc_logo_fig}
+\caption{Sample Figure}
+\label{fig:logo}
+\end{figure}
+
+For more examples of figures and graphics, many papers on 
+\href{https://arxiv.org}{arXiv} provide their \TeX{} source files, 
+which can be studied for reference.
+
+
+
+\section{Algorithm Environment}
+
+The \texttt{algorithm2e} package is used in this template to typeset algorithms.  
+For detailed usage, please refer to the official documentation of the package.
+
+\begin{algorithm}[htbp]
+\small
+\SetAlgoLined
+\KwData{this text}
+\KwResult{how to write algorithm with \LaTeX2e }
+
+initialization\;
+\While{not at end of this document}{
+    read current\;
+    \eIf{understand}{
+        go to next section\;
+        current section becomes this one\;
+    }{
+        go back to the beginning of current section\;
+    }
+}
+\caption{Example Algorithm 1}
+\label{algo:algorithm1}
+\end{algorithm}
+
+Note that algorithms can be included in the thesis, 
+but inserting large blocks of raw code is generally unwise.  
+However, if code must be shown, the \textsf{listings} package 
+is recommended for that purpose.

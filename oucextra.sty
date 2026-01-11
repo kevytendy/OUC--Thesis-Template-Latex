@@ -1,0 +1,120 @@
+%%
+%% This is file `oucextra.sty':
+%% extra packages and configuration.
+%%
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{oucextra}
+
+% 数学符号：
+\RequirePackage{amsmath,amsthm}
+\newcommand\eu{\mathrm{e}}
+\newcommand\iu{\mathrm{i}}
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+% 数学定理：
+% 以下定义数学定理环境默认风格为 oucplain。
+\newtheoremstyle{oucplain}%
+    {}{}%
+    {}{2\ccwd}%
+    {\bfseries}{}%
+    {\ccwd}{}
+\theoremstyle{oucplain}
+% 定义新的定理
+\if@ouc@english
+  \newcommand\ouc@assertionname{Assertion}
+  \newcommand\ouc@axiomname{Axiom}
+  \newcommand\ouc@corollaryname{Corollary}
+  \newcommand\ouc@definitionname{Definition}
+  \newcommand\ouc@examplename{Example}
+  \newcommand\ouc@lemmaname{Lemma}
+  \newcommand\ouc@proofname{Proof}
+  \newcommand\ouc@propositionname{Proposition}
+  \newcommand\ouc@remarkname{Remark}
+  \newcommand\ouc@theoremname{Theorem}
+\else
+  \newcommand\ouc@assertionname{断言}
+  \newcommand\ouc@axiomname{公理}
+  \newcommand\ouc@corollaryname{推论}
+  \newcommand\ouc@definitionname{定义}
+  \newcommand\ouc@examplename{例}
+  \newcommand\ouc@lemmaname{引理}
+  \newcommand\ouc@proofname{证明}
+  \newcommand\ouc@propositionname{命题}
+  \newcommand\ouc@remarkname{注}
+  \newcommand\ouc@theoremname{定理}
+\fi
+\newtheorem{theorem}                {\ouc@theoremname}     [chapter]
+\newtheorem{assertion}  [theorem]   {\ouc@assertionname}
+\newtheorem{axiom}      [theorem]   {\ouc@axiomname}
+\newtheorem{corollary}  [theorem]   {\ouc@corollaryname}
+\newtheorem{lemma}      [theorem]   {\ouc@lemmaname}
+\newtheorem{proposition}[theorem]   {\ouc@propositionname}
+\newtheorem{definition}             {\ouc@definitionname}  [chapter]
+\newtheorem{example}                {\ouc@examplename}     [chapter]
+\newtheorem*{remark}                {\ouc@remarkname}
+% \pkg{amsthm} 单独定义了 proof 环境，这里重新定义以满足格式要求。
+% 原本模仿 \pkg{amsthm} 写成 |\item[\hskip\labelsep\hskip2\ccwd #1\hskip\ccwd]|，
+% 但是却会多出一些间隙。
+\renewenvironment{proof}[1][\proofname]{\par
+    \pushQED{\qed}%
+    \normalfont \topsep6\p@\@plus6\p@\relax
+    \trivlist
+        \item\relax\hskip2\ccwd
+        \textbf{#1}
+        \hskip\ccwd\ignorespaces
+    }{%
+    \popQED\endtrivlist\@endpefalse
+}
+\renewcommand\proofname\ouc@proofname
+
+% 表格：
+% 三线表
+\RequirePackage{booktabs}
+% 跨页表格
+\RequirePackage{longtable}
+% 自适应宽度表格与列格式
+\RequirePackage{tabularx}
+\RequirePackage{array}
+
+% 符号和颜色：
+% 用于 checkmark 和 X 符号
+\RequirePackage{pifont}
+% 颜色支持
+\RequirePackage{xcolor}
+
+% 算法和代码：
+% 算法环境
+\RequirePackage[boxed, algochapter, lined, linesnumbered]{algorithm2e}
+\if@ouc@english
+  \renewcommand\listalgorithmcfname{List of Algorithms}
+  \renewcommand\algorithmcfname{Algorithm}
+\else
+  \renewcommand{\listalgorithmcfname}{算法索引}
+  \renewcommand{\algorithmcfname}{算法}
+\fi
+% 使算法目录另起一页
+\let\ouc@save@listofalgorithms=\listofalgorithms
+\renewcommand\listofalgorithms{%
+    \cleardoublepage%
+    \ouc@save@listofalgorithms}
+% 代码环境
+\RequirePackage{listings}
+\lstset{
+    basicstyle=\small\ttfamily,
+    xleftmargin=2pc,
+    xrightmargin=2pc,
+    frame=single,
+    columns=flexible,
+    numbers=left,
+}
+\if@ouc@english
+  \renewcommand\lstlistlistingname{List of Code}
+  \renewcommand\lstlistingname{Code}
+\else
+  \renewcommand{\lstlistlistingname}{代码索引}
+  \renewcommand{\lstlistingname}{代码}
+\fi
+\endinput
+%%
+%% End of file `oucextra.sty'.
