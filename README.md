@@ -9,10 +9,10 @@ This README explains how to use, customize and compile the template, plus troubl
 
 If you have questions, suggestions, or improvements for this OUC Thesis LaTeX template, feel free to reach out!
 
-- **Author:** Tyrone Zeka(太龙)  
-- **Email:** [zekah54 AT email.com](mailto:zekah54@gmail.com)  
-- **GitHub:** [@TyroneZeka](https://github.com/TyroneZeka)  
-- **LinkedIn:** [Tyrone Zeka](https://www.linkedin.com/in/tyrone-zeka/)  
+- **Author:** Kelvin Wachi  
+- **Email:** [Kevy_Tendy AT email.com](mailto:kelvinwachi01@@gmail.com)  
+- **GitHub:** [@TyroneZeka](https://github.com/kevytendy)  
+- **LinkedIn:** [Kelvin Wachi](https://www.linkedin.com/in/kelvin-wachi/)  
 - **Issues & feedback:** Please open a [GitHub Issue](../../issues) in this repository.
 
 > 💡 Tip: If you’re using this template for your own thesis, a quick acknowledgment or star ⭐ on GitHub is always appreciated!
@@ -74,15 +74,15 @@ Example:
 The class exposes a number of commands to set thesis metadata. Example (taken from the sample `main.tex`):
 
 ```tex
-\title{MAE-MFF: Masked Autoencoders with Multi-Frequency Fusion.}
-\author{太龙}
+\title{Diff-GAN:Privacy-Preserving Tabular Data Synthesis under GAN and Diffusion Modeling}
+\author{Kelvin}
 \major{计算机技术}
 \supervisor{师傅}
 % \date{二〇一七年五月一日} % optional Chinese date
 \entitle{An Example of OUC Thesis Template for Bachelor, Master and Doctor}
-\enauthor{Tyrone Zeka}
+\enauthor{Kelvin Wachi}
 \enmajor{Computer Science and Technology}
-\ensupervisor{Prof. Yang}
+\ensupervisor{Prof. Yu Yanwei}
 \encosupervisor{Prof. Li}
 \endate{May 1, 2026}
 ```
@@ -156,15 +156,15 @@ latexmk -xelatex -pdf main.tex
 ```tex
 %!TEX program = xelatex
 \documentclass[master,english,pdf,numbers]{oucthesis}
-\title{MAE-MFF: Masked Autoencoders with Multi-Frequency Fusion}
-\author{太龙}
+\title{Diff-GAN: Privacy-Preserving Tabular Data Synthesis under GAN and Diffusion Modeling}
+\author{Kelvin}
 \major{计算机技术}
 \supervisor{师傅}
-\entitle{MAE-MFF: Masked Autoencoders with Multi-Frequency Fusion}
+\entitle{Diff-GAN: Privacy-Preserving Tabular Data Synthesis under GAN and Diffusion Modeling}
 \enauthor{Tailong}
 \enmajor{Computer Science}
-\ensupervisor{Prof. Yang}
-\endate{May 1, 2017}
+\ensupervisor{Prof. Yu Yanwei}
+\endate{May 1, 2026}
 
 \begin{document}
 \maketitle
