@@ -1,21 +1,77 @@
 \chapter{Introduction}
+\label{chap:introduction}
 
-\section{Research Background}
-In recent years, X has attracted increasing attention due to its wide
-applications in Y. However, existing methods still face challenges such as
-Z and limited scalability.
+\section{Motivation}
+\label{sec:motivation}
 
-\section{Research Objectives and Scope}
-The purpose of this study is to develop an improved framework that
-addresses these issues by combining A and B techniques.
+Tabular data constitutes one of the most prevalent and valuable forms of data representation in modern information systems. Structured datasets containing rows of individual records and columns of attributes underpin decision-making processes in high-stakes domains such as healthcare, finance, insurance, and public administration. In healthcare, tabular data appears in electronic health records and clinical registries; in finance, it supports credit scoring and fraud detection; in government, it informs policy and resource allocation.
 
-\section{Research Methods}
-This research adopts both theoretical analysis and experimental validation.
-Data were collected from multiple sources to ensure reliability.
+However, the sharing of such data is increasingly restricted by regulations like the GDPR and institutional ethics policies. Even after removing direct identifiers (e.g., names or ID numbers), privacy risks remain due to re-identification via quasi-identifiers (e.g., age, gender, ZIP code) or inference of sensitive attributes through statistical correlations.
 
-\section{Thesis Structure}
-The remainder of this thesis is organized as follows:
-Chapter~\ref{chap:Mathematics and Formulae} reviews related work;
-Chapter~\ref{chap:method} introduces the proposed approach;
-Chapter~\ref{chap:experiment} presents experiments and results;
-and Chapter~\ref{chap:conclusion} concludes the thesis and suggests future work.
+Synthetic data generation offers a promising alternative: instead of releasing real records, a generative model produces artificial data that mimics the statistical properties of the original. When done well, synthetic data can support model development, benchmarking, and exploratory analysis while reducing privacy exposure.
+
+Yet synthetic data is not automatically private. Generative models—especially deep learning-based ones—can memorize training examples, making them vulnerable to membership inference attacks. Moreover, many methods fail to accurately represent rare categories or minority subgroups, leading to biased or unfair outcomes in downstream tasks.
+
+Thus, effective tabular synthesis must balance three key aspects:  
+(i) \textit{utility} — supporting accurate downstream modeling;  
+(ii) \textit{fairness} — preserving representation of sensitive or minority groups; and  
+(iii) \textit{formal privacy} — providing mathematically rigorous guarantees against information leakage.  
+
+This thesis addresses the challenge of achieving this balance in practice.
+
+\section{Why GANs and Diffusion for Tabular Synthesis}
+\label{sec:gan_diffusion_motivation}
+
+Generative Adversarial Networks (GANs) have shown strong performance in tabular data synthesis, particularly in capturing complex feature interactions. Models like CTGAN and TVAE adapt GANs to handle mixed continuous and categorical variables, making them suitable for real-world datasets.
+
+However, GANs suffer from training instability and mode collapse—issues that are exacerbated in imbalanced or long-tailed tabular data, where rare categories are often ignored. This not only harms utility but also increases privacy risks through overfitting.
+
+Diffusion models, by contrast, offer more stable training and better coverage of data modes. Yet they are inherently designed for continuous spaces, making direct application to discrete tabular features challenging.
+
+To address these limitations, this thesis explores a **hybrid Diff-GAN architecture** that applies diffusion in the **latent space** of a GAN. This approach leverages the representational power of GANs while using diffusion to refine latent representations—improving stability and diversity without requiring discrete diffusion over raw tabular features.
+
+\section{Research Problem}
+\label{sec:research_problem}
+
+Given a sensitive real-world tabular dataset $\mathcal{D}_{\text{real}}$, how can we generate a synthetic dataset $\mathcal{D}_{\text{syn}}$ that:
+\begin{itemize}
+    \item Preserves joint and marginal distributions for high downstream utility;
+    \item Maintains fairness across sensitive subgroups;
+    \item Provides formal privacy guarantees (e.g., $\varepsilon$-differential privacy);
+    \item Remains computationally feasible and scalable?
+\end{itemize}
+
+Existing methods often optimize for one or two of these goals at the expense of others. This work investigates whether a latent-space diffusion refinement strategy, combined with differentially private model selection, can better reconcile these competing objectives.
+
+\section{Objectives}
+\label{sec:objectives}
+
+The main objectives of this thesis are to:
+\begin{itemize}
+    \item Design and implement a hybrid Diff-GAN architecture for tabular data synthesis;
+    \item Integrate differential privacy via a noise-augmented model selection mechanism;
+    \item Evaluate the approach on real-world benchmarks using metrics for utility, fairness, distribution fidelity, and privacy;
+    \item Analyze trade-offs between privacy strength ($\varepsilon$), data quality, and computational cost.
+\end{itemize}
+
+\section{Contributions}
+\label{sec:contributions}
+
+This thesis contributes:
+\begin{enumerate}
+    \item An implementation and empirical evaluation of a latent-space Diff-GAN hybrid for tabular data;
+    \item A differentially private model selection protocol that upweights rare categories to improve fairness under privacy constraints;
+    \item A comprehensive comparison against state-of-the-art baselines (e.g., CTGAN, DP-CTGAN, TVAE) across multiple datasets;
+    \item Practical insights into the scalability and limitations of diffusion-enhanced GANs for structured data.
+\end{enumerate}
+
+\section{Thesis Organization}
+\label{sec:thesis_structure}
+
+The remainder of this thesis is organized as follows.  
+Chapter~\ref{chap:background} reviews background concepts and related work in synthetic data, GANs, diffusion models, and differential privacy.  
+Chapter~\ref{chap:problem} defines the problem setting and threat model.  
+Chapter~\ref{chap:method} describes the proposed Diff-GAN architecture and privacy mechanism.  
+Chapter~\ref{chap:experiment_setup} details the experimental setup, datasets, and evaluation metrics.  
+Chapter~\ref{chap:results} presents and discusses the results.  
+Chapter~\ref{chap:conclusion} concludes the thesis and suggests directions for future work.

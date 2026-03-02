@@ -1,27 +1,15 @@
-%!TEX root =  ../main.tex
-% You can comment this part out if you have a Chinese Abstract.
+%!TEX root = ../main.tex
+
+% Optional: Uncomment if you also have a Chinese abstract
 % \begin{abstract}
-%   摘要是论文内容的总结概括，应简要说明论文的研究目的、基本研究内容、 研究方法或
-%   过程、结果和结论，突出论文的创新之处。摘要中不宜使用公式、图表，不引用文献。
-%   博士论文中文摘要一般800～1000个汉字，硕士论文中文摘要一般600个汉字。英文摘要的
-%   篇幅参照中文摘要。
-
-%   关键词另起一行并隔写在摘要下方，一般3～8个词，中文关键词间空一字或用分号“；”隔
-%   开。英文摘要的关键词与中文摘要的关键词应完全一致，中间用逗号“,”或分号“;”隔开。
-
-%   \keywords{中国海洋大学；学位论文；\LaTeX{} 模板；学士；硕士；博士}
+%   [Your Chinese abstract here]
+%   \keywords{关键词1；关键词2；关键词3}
 % \end{abstract}
 
 \begin{enabstract}
-  This is a sample document of ouc thesis \LaTeX{} template for bachelor,
-  master and doctor. The template is created by Tyrone Zeka, which
-  orignate from the template created by zepinglee. The template meets the
-  requirements of ouc thesis writing standards.
+  Privacy-preserving tabular data synthesis remains challenging due to fundamental trade-offs between data utility, fairness, and formal privacy guarantees. Generative Adversarial Networks (GANs) have demonstrated strong performance in synthesizing mixed-type tabular data but often suffer from training instability, mode collapse, and vulnerability to membership inference attacks. Diffusion models offer improved stability and diversity but face significant challenges when applied directly to tabular data containing discrete and categorical attributes, and they often introduce substantial computational overhead. Furthermore, training-time differential privacy mechanisms such as DP-SGD provide strong theoretical guarantees but frequently degrade downstream utility, particularly for rare categories and minority subgroups.
 
-  This document will show the usage of basic commands provided by \LaTeX{} and
-  some features provided by the template. For more information, please refer to
-  the template document oucthesis.pdf.
+  This thesis presents \textit{Diff-GAN}, a privacy-preserving tabular data synthesis framework that decouples fidelity-oriented training from privacy enforcement. Diff-GAN employs a lightweight latent-space diffusion refiner that stabilizes GAN training and improves mode coverage without requiring discrete diffusion in data space. Differential privacy is enforced only at model selection time, using a Laplace-noised divergence score with rare-category upweighting to privately select the generator released for synthesis. Experiments on real-world tabular benchmarks, including Adult, Covertype, and an EHR-style dataset, demonstrate that Diff-GAN achieves strong predictive utility, near-zero fairness disparity, improved distribution coverage, and reduced marginal distribution shift compared with strong baseline methods. These results show that Diff-GAN offers a practical and principled solution for high-utility, differentially private tabular data synthesis.
 
-  \enkeywords{Ocean University of China (ouc); Thesis;
-  \LaTeX{} Template; Bachelor; Master; PhD}
+  \enkeywords{Synthetic Data, Tabular Data, GAN, Diffusion Models, Differential Privacy, Private Model Selection, Fairness}
 \end{enabstract}

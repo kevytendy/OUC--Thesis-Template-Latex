@@ -1,63 +1,78 @@
 %!TEX encoding = UTF-8 Unicode
 %!TEX program = xelatex
 
-\documentclass[master,english, professional]{oucthesis}
-% bachelor|master|doctor [professional] [english] [pdf] [authoryear|numebers]
+\documentclass[master,english,professional]{oucthesis}
+% Use 'doctor' for PhD; options: [bachelor|master|doctor] [english] [professional]
+
 \usepackage{oucextra}
 \graphicspath{{figures/}}
 
-\title{中国海洋大学本科、硕士、博士论文模板范例}
-\author{太龙}
-\major{计算机技术}
-\supervisor{师傅}
-% \date{二〇一七年五月一日}    % 注释掉则为今日
-% \professionaltype{专业学位类型}
+% --- Thesis Metadata (Update as needed) ---
+\title{Privacy-Preserving Synthetic Tabular Data Generation via Diff-GAN Hybrid Architectures}
+\author{KELVIN TENDAI WACHI}
+\major{Computer Science and Technology}
+\supervisor{Prof. Yu Yanwei}
+\cosupervisor{Prof. Li}
 
-\entitle{An Example of OUC Thesis Template for Bachelor, Master and Doctor}
-\enauthor{Tyrone X}
+\entitle{Privacy-Preserving Synthetic Tabular Data Generation via Diff-GAN Hybrid Architectures}
+\enauthor{KELVIN TENDAI WACHI}
 \enmajor{Computer Science and Technology}
-\ensupervisor{Prof. Yang}
+\ensupervisor{Prof. Yu Yanwei}
 \encosupervisor{Prof. Li}
-\endate{Oct 10, 2025}    % today if commented
-% \enprofessionaltype{Professional degree type}
-% \ensecrettext{Confidential\quad Less than or equal to 20 years}
-% Internal|Secret|Confidential
+\endate{January 2026}
 
 \begin{document}
 
 \maketitle
 
-% 本科论文:
-%   frontmatter: 致谢、目录、中文摘要、英文摘要
-%   mainmatter: 正文章节、参考文献
-%   appendix: 附录
-%
-% 硕博论文:
-%   frontmatter: 中文摘要、英文摘要、目录、符号说明
-%   mainmatter: 正文、参考文献
-%   appendix: 附录
-%   backmatter: 致谢、发表论文
-
+% ===== FRONTMATTER =====
 \frontmatter
-\input{chapters/abstract}
+\input{chapters/abstract}      % Must contain both Chinese and English abstracts
 \tableofcontents
 % \listoffigures
 % \listoftables
 % \listofalgorithms
 % \input{chapters/0.notation}
 
+% ===== MAINMATTER =====
 \mainmatter
-\input{chapters/intro}
-\input{chapters/math}
-\input{chapters/floats}
-\input{chapters/citations}
-\bibliography{bib/ouc}
 
+% Chapter 1: Introduction
+\input{chapters/intro}
+
+% Chapter 2: Background and Literature Review
+% → Content of 'math.tex' should be updated to reflect literature review
+\input{chapters/math}
+
+% Chapter 3: Problem Formulation and Threat Model
+% → Content of 'floats.tex' should be rewritten accordingly
+\input{chapters/floats}
+
+% Chapter 4: The Proposed Method
+\input{chapters/proposed_method}
+
+% Chapter 5: Experimental Setup
+\input{chapters/experimental_setup}
+
+% Chapter 6: Results and Discussion
+\input{chapters/results_discussion}
+
+% Chapter 7: Conclusion and Future Work
+\input{chapters/conclusion_future}
+
+% References (automatically generated — no manual chapter needed)
+\bibliography{bib/ouc}
+% Ensure your .bib file includes all relevant works on DP, GANs, Diffusion, etc.
+
+% ===== APPENDIX =====
 \appendix
 \chapter{Thesis Formatting Guidelines}
+% Optional: Add real appendix content later (e.g., hyperparameters, dataset schemas)
+% Do NOT include citations.tex here unless required for internal documentation
 
+% ===== BACKMATTER =====
 \backmatter
 \input{chapters/acknowledgements}
-\input{chapters/publications}
+\input{chapters/publications}  % List your awards, e.g., Huawei Cup, GitHub contributions
 
 \end{document}
